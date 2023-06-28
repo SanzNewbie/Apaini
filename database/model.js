@@ -31,7 +31,7 @@ const Users = mongoose.Schema({
 		type: String
 	},
 	premium: {
-		type: Boolean
+		type: String
 	},
 	verif: {
 		type: Boolean
