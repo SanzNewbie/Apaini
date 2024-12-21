@@ -135,17 +135,17 @@ app.get("/docs", async (req, res) => {
 	});
 });*/
 
-app.get('/api', (req, res) => {
+app.use('/api', (req, res) => {
   res.sendFile(path.join(__dirname, 'routers', 'api'));
 });
 
 
-app.get('/users', (req, res) => {
+app.use('/users', (req, res) => {
   res.sendFile(path.join(__dirname, 'routers', 'users'));
 });
 
-app.get('/premium', (req, res) => {
-  res.sendFile(path.join(__dirname, 'routers', 'premium'));
+app.use('/premium', (req, res) => {
+  res.sendFile(path.join(__dirname, 'routing', 'premium'));
 });
 
 app.listen(PORT, function () {
