@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 3000;
 app.enable("trust proxy");
 app.set("json spaces", 2);
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'views')));
 
 // Middleware CORS
 app.use(cors());
@@ -98,7 +98,9 @@ app.get('/', (req, res) => {
 });
 
 app.get("/docs", async (req, res) => {
-	let users;
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+/*	let users;
 	let text_running;
 	//let hit;
 	/**let users_count = [...await User.find({}, async function (er, resp) {
@@ -111,7 +113,7 @@ app.get("/docs", async (req, res) => {
 	/**const Hit = await User.findOne({ gmail: user });
 	if (!Hit.hitCount) hit = hitCount.count;
 	else hit = Hit.hitCount;**/
-	if (!req.user) {
+/*	if (!req.user) {
 		text_running = "Update+Instagram+Stories;Silahkan+lapor;Bila+menemukan+bug;Terima+kasih.";
 		users = {
 			apikey: "APIKEY",
@@ -131,11 +133,20 @@ app.get("/docs", async (req, res) => {
 		profile: users.url,
 		layout: "layouts/main"
 	});
+});*/
+
+app.get('/api', (req, res) => {
+  res.sendFile(path.join(__dirname, 'routers', 'api'));
 });
 
-app.use("/api", apirouter);
-app.use("/users", userRouters);
-app.use('/premium', premiumRouters);
+
+app.get('/users', (req, res) => {
+  res.sendFile(path.join(__dirname, 'routers', 'users'));
+});
+
+app.get('/premium', (req, res) => {
+  res.sendFile(path.join(__dirname, 'routers', 'premium'));
+});
 
 app.listen(PORT, function () {
 	console.log("Server running on port " + PORT);
