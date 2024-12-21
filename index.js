@@ -98,7 +98,7 @@ app.get('/', (req, res) => {
 });
 
 app.get("/docs", async (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+  res.sendFile(path.join(__dirname, 'views', 'docs'));
 });
 /*	let users;
 	let text_running;
