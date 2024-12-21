@@ -19,9 +19,18 @@ const { User } = require("./database/model");
 const apirouter = require("./routing/api");
 const userRouters = require("./routing/users");
 const premiumRouters = require('./routing/premium');
+const cors = require('cors');
+const path = require('path');
+const inject = require ('@vercel/analytics') 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.enable("trust proxy");
+app.set("json spaces", 2);
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Middleware CORS
+app.use(cors());
 app.use(Limiter({
 	windowMs: 1 * 60 * 1000,
 	max: 1000,
@@ -144,3 +153,4 @@ cron.schedule("0 0 * * *", async () => {
 	scheduled: true,
 	timezone: "Asia/Jakarta"
 });
+module.exports = app;
