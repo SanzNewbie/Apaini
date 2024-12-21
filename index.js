@@ -97,7 +97,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-app.get("/docs", async (req, res) => {
+app.use("/docs", async (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'docs'));
 });
 /*	let users;
@@ -135,13 +135,13 @@ app.get("/docs", async (req, res) => {
 	});
 });*/
 
-app.use('/api', (req, res) => {
-  res.sendFile(path.join(__dirname, 'routers', 'api'));
+app.get('/api', (req, res) => {
+  res.sendFile(path.join(__dirname, 'routing', 'api'));
 });
 
 
-app.use('/users', (req, res) => {
-  res.sendFile(path.join(__dirname, 'routers', 'users'));
+app.get('/users', (req, res) => {
+  res.sendFile(path.join(__dirname, 'routing', 'users'));
 });
 
 app.use('/premium', (req, res) => {
